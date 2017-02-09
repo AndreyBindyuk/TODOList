@@ -1,7 +1,6 @@
 package main;
 
 import entities.Task;
-import enums.Status;
 import exceptions.TaskServiceValidationException;
 import services.taskService.TaskService;
 import services.taskService.impl.TaskServiceImpl;
@@ -12,7 +11,6 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Arrays;
 
 public class Main {
     private static final String taskManagerMenu = "taskManagerMenu.txt";
@@ -38,11 +36,10 @@ public class Main {
                     System.out.println("Enter Task Status: ");
                     input = br.readLine();
                     try {
-                        task.setStatus(Status.valueOf(input));
-                        taskService.updateFile(task);
+                        taskService.updateFile(task,input);
 
-                    } catch (Exception e) {
-                        System.out.println("status is incorrect! status should has following values:  " + Arrays.toString(Status.class.getEnumConstants()));
+                    } catch (TaskServiceValidationException e) {
+                        e.printStackTrace();
                     }
                     System.out.println(text);
                     break;

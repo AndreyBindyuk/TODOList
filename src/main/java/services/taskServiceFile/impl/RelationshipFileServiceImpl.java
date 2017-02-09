@@ -7,6 +7,7 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
@@ -18,52 +19,80 @@ public class RelationshipFileServiceImpl implements RelationshipFileService {
     private static final String tasksData = "tasksData.properties";
 
     @Override
-    public void updateFile(Task task) throws IOException {
+    public void updateFile(Task task) {
         Properties props = new Properties();
+        try {
         String text = getResourceContent();
         Writer output = new BufferedWriter(new FileWriter(tasksData, true));
         if (!text.contains(task.getId())) {
             props.setProperty(task.getId(), task.toString());
             props.store(output, null);
         }
-        output.close();
+
+            output.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
     @Override
-    public Set<Map.Entry<Object, Object>> getAllTaskInfoFromFile() throws IOException {
+    public Map<String, String> getAllTaskInfoFromFile() {
+        Map stringTaskMap = new HashMap();
         Properties props = new Properties();
-        InputStream input = new FileInputStream(tasksData);
-        props.load(input);
-        return props.entrySet();
+        InputStream input;
+        try {
+            input = new FileInputStream(tasksData);
+            props.load(input);
+            for(Map.Entry<Object,Object> map: props.entrySet()){
+                stringTaskMap.put(map.getKey(),map.getValue());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
+        return stringTaskMap;
     }
 
     @Override
-    public String getSpecificTaskInfoFromFile(String id) throws IOException {
+    public String getSpecificTaskInfoFromFile(String id) {
         String getSpecificTask = null;
         Properties props = new Properties();
-        String text = getResourceContent();
-        InputStream input = new FileInputStream(tasksData);
-        props.load(input);
-        if (text.contains(id)) {
-            getSpecificTask = props.getProperty(id);
+
+        try {
+            String text = getResourceContent();
+            InputStream input = new FileInputStream(tasksData);
+            props.load(input);
+            if (text.contains(id)) {
+                getSpecificTask = props.getProperty(id);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
         return getSpecificTask;
     }
 
     @Override
-    public boolean removeSpecificTaskFromFile(String id) throws IOException {
+    public boolean removeSpecificTaskFromFile(String id) {
         Properties props = new Properties();
         Boolean isremoved = false;
-        String text = getResourceContent();
-        InputStream input = new FileInputStream(tasksData);
-        props.load(input);
-        if (text.contains(id)) {
-            props.remove(id);
-            FileOutputStream out = new FileOutputStream(tasksData);
-            props.store(out, null);
-            isremoved = true;
+        try {
+            String text = getResourceContent();
+            InputStream input = new FileInputStream(tasksData);
+            props.load(input);
+            if (text.contains(id)) {
+                props.remove(id);
+                FileOutputStream out = new FileOutputStream(tasksData);
+                props.store(out, null);
+                isremoved = true;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
         return isremoved;
     }
 

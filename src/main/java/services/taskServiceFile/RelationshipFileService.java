@@ -1,7 +1,6 @@
 package services.taskServiceFile;
 
 import entities.Task;
-import java.io.IOException;
 import java.util.Map;
 import java.util.Set;
 
@@ -10,13 +9,13 @@ import java.util.Set;
  */
 public interface RelationshipFileService {
 
-    public void updateFile(Task task) throws IOException;
+    public void updateFile(Task task);
 
-    public Set<Map.Entry<Object, Object>> getAllTaskInfoFromFile() throws IOException;
+    public Map<String, String> getAllTaskInfoFromFile();
 
-    public String getSpecificTaskInfoFromFile(String id) throws IOException;
+    public String getSpecificTaskInfoFromFile(String id);
 
-    public boolean removeSpecificTaskFromFile(String id) throws IOException;
+    public boolean removeSpecificTaskFromFile(String id);
 
     public boolean removeAllTasksFromFile();
 }
