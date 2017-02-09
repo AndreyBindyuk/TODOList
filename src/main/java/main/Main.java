@@ -2,8 +2,9 @@ package main;
 
 import entities.Task;
 import enums.Status;
-import services.TaskService;
-import services.impl.TaskServiceImpl;
+import exceptions.TaskServiceValidationException;
+import services.taskService.TaskService;
+import services.taskService.impl.TaskServiceImpl;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -46,14 +47,22 @@ public class Main {
                     System.out.println(text);
                     break;
                 case "2":
-                    System.out.println(taskService.getAllTaskInfo());
+                    try {
+                        System.out.println(taskService.getAllTaskInfo());
+                    } catch (TaskServiceValidationException e) {
+                        e.printStackTrace();
+                    }
                     System.out.println(text);
                     break;
                 case "3":
                     System.out.println("Enter task id: ");
                     input = br.readLine();
-                    System.out.println(taskService.getSpecificTaskInfo(input));
-                    System.out.println(text);
+                    try {
+                        System.out.println(taskService.getSpecificTaskInfo(input));
+                        System.out.println(text);
+                    } catch (TaskServiceValidationException e) {
+                        e.printStackTrace();
+                    }
                     break;
                 case "4":
                     if (taskService.removeAllTasks()) {
@@ -64,8 +73,12 @@ public class Main {
                 case "5":
                     System.out.println("Enter task id: ");
                     input = br.readLine();
-                    if (taskService.removeSpecificTask(input)) {
-                        System.out.println(input + " - task has been removed");
+                    try {
+                        if (taskService.removeSpecificTask(input)) {
+                            System.out.println(input + " - task has been removed");
+                        }
+                    } catch (TaskServiceValidationException e) {
+                        e.printStackTrace();
                     }
                     System.out.println(text);
                     break;
