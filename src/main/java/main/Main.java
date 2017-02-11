@@ -36,7 +36,9 @@ public class Main {
                     System.out.println("Enter Task Status: ");
                     input = br.readLine();
                     try {
-                        taskService.updateFile(task,input);
+                        if(taskService.updateFile(task,input)){
+                            System.out.println("file has been updated");
+                        }
 
                     } catch (TaskServiceValidationException e) {
                         e.printStackTrace();

@@ -8,7 +8,7 @@ import java.util.Set;
 
 public interface TaskService {
 
-    public void updateFile(Task task,String status) throws TaskServiceValidationException;
+    public boolean updateFile(Task task,String status) throws TaskServiceValidationException;
 
     public Map<String, String> getAllTaskInfo() throws TaskServiceValidationException;
 

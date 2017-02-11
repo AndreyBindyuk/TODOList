@@ -13,13 +13,16 @@ public class TaskServiceImpl implements TaskService {
     private RelationshipFileService relationshipFileService = new RelationshipFileServiceImpl();
 
 
-    public void updateFile(Task task,String s) throws TaskServiceValidationException {
+    public boolean updateFile(Task task,String s) throws TaskServiceValidationException {
+        Boolean isUpdated = false;
         if(!Arrays.toString(Status.values()).contains(s)){
             throw new TaskServiceValidationException("status is incorrect! status should has following values:  " + Arrays.toString(Status.class.getEnumConstants()));
         }else {
             task.setStatus(Status.valueOf(s));
-            relationshipFileService.updateFile(task);
+            isUpdated = relationshipFileService.updateFile(task);
         }
+
+        return isUpdated;
 
     }
 

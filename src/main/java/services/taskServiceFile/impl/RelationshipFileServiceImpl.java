@@ -1,5 +1,6 @@
 package services.taskServiceFile.impl;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import entities.Task;
 import services.taskServiceFile.RelationshipFileService;
 
@@ -19,21 +20,23 @@ public class RelationshipFileServiceImpl implements RelationshipFileService {
     private static final String tasksData = "tasksData.properties";
 
     @Override
-    public void updateFile(Task task) {
+    public boolean updateFile(Task task) {
         Properties props = new Properties();
+        Boolean isUpdated = false;
         try {
         String text = getResourceContent();
         Writer output = new BufferedWriter(new FileWriter(tasksData, true));
         if (!text.contains(task.getId())) {
             props.setProperty(task.getId(), task.toString());
             props.store(output, null);
+            isUpdated = true;
         }
 
             output.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        return isUpdated;
     }
 
     @Override

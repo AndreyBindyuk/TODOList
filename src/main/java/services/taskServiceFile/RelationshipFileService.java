@@ -9,7 +9,7 @@ import java.util.Set;
  */
 public interface RelationshipFileService {
 
-    public void updateFile(Task task);
+    public boolean updateFile(Task task);
 
     public Map<String, String> getAllTaskInfoFromFile();
 
