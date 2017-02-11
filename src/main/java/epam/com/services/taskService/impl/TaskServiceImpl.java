@@ -1,11 +1,11 @@
-package services.taskService.impl;
+package epam.com.services.taskservice.impl;
 
-import entities.Task;
-import enums.Status;
-import exceptions.TaskServiceValidationException;
-import services.taskService.TaskService;
-import services.taskServiceFile.RelationshipFileService;
-import services.taskServiceFile.impl.RelationshipFileServiceImpl;
+import epam.com.entities.Task;
+import epam.com.enums.Status;
+import epam.com.exceptions.TaskServiceValidationException;
+import epam.com.services.taskservice.TaskService;
+import epam.com.services.taskservicefile.RelationshipFileService;
+import epam.com.services.taskservicefile.impl.RelationshipFileServiceImpl;
 
 import java.util.*;
 

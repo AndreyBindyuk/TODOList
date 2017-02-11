@@ -1,6 +1,6 @@
-package entities;
+package epam.com.entities;
 
-import enums.Status;
+import epam.com.enums.Status;
 
 import java.io.Serializable;
 

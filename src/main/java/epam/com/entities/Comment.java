@@ -1,4 +1,4 @@
-package entities;
+package epam.com.entities;
 
 import java.io.Serializable;
 import java.sql.Timestamp;

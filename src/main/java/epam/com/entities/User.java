@@ -1,4 +1,4 @@
-package entities;
+package epam.com.entities;
 
 
 public class User {

@@ -1,4 +1,4 @@
-package enums;
+package epam.com.enums;
 
 public enum Status {
     OPEN,

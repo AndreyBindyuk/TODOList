@@ -1,8 +1,7 @@
-package services.taskServiceFile;
+package epam.com.services.taskservicefile;
 
-import entities.Task;
+import epam.com.entities.Task;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Created by Andrey_Bindyuk on 2/9/2017.

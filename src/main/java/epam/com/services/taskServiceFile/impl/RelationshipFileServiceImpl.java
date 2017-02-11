@@ -1,8 +1,7 @@
-package services.taskServiceFile.impl;
+package epam.com.services.taskservicefile.impl;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
-import entities.Task;
-import services.taskServiceFile.RelationshipFileService;
+import epam.com.entities.Task;
+import epam.com.services.taskservicefile.RelationshipFileService;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -11,7 +10,6 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
-import java.util.Set;
 
 /**
  * Created by Andrey_Bindyuk on 2/9/2017.

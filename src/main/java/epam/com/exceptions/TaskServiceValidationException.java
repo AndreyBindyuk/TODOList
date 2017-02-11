@@ -1,4 +1,4 @@
-package exceptions;
+package epam.com.exceptions;
 
 /**
  * Created by Andrey_Bindyuk on 2/9/2017.

@@ -1,10 +1,9 @@
-package services.taskService;
+package epam.com.services.taskservice;
 
-import entities.Task;
-import exceptions.TaskServiceValidationException;
+import epam.com.entities.Task;
+import epam.com.exceptions.TaskServiceValidationException;
 
 import java.util.Map;
-import java.util.Set;
 
 public interface TaskService {
 
